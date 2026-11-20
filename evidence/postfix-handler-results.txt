@@ -1,0 +1,10 @@
+AFTER CORRECTION (submitted source): exact App.tsx event handlers; mocked hook + JSX runtime (not a DOM test)
+TC-001 PASS | actions: (initial render) | expected: 0 | actual: 0
+TC-002 PASS | actions: Increment | expected: 1 | actual: 1
+TC-003 PASS | actions: Decrement | expected: -1 | actual: -1
+TC-004 PASS | actions: Increment -> Increment -> Decrement | expected: 1 | actual: 1
+TC-005 PASS | actions: Decrement -> Decrement | expected: -2 | actual: -2
+TC-006 PASS | actions: Increment -> Increment -> Reset | expected: 0 | actual: 0
+TC-007 PASS | actions: Reset -> Reset | expected: 0 | actual: 0
+TC-008 PASS | actions: Decrement -> Reset -> Increment | expected: 1 | actual: 1
+TOTAL: 8/8 passed, 0 failed

@@ -1,0 +1,33 @@
+name: Counter tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: counter-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run Jest component tests with coverage
+        run: npm run test:coverage -- --ci
+      - name: Compile production app
+        run: npm run build
+      - name: Lint application and tests
+        run: npm run lint
+      - name: Reproduce baseline defect and verify correction
+        run: npm run test:logic
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: counter-jest-coverage
+          path: counter-app/coverage
+          if-no-files-found: ignore
